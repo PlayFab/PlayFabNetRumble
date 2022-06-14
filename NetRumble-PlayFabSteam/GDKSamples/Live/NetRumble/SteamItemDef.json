@@ -1,0 +1,41 @@
+{
+	"appid": 0000000,
+	"items": [
+		{
+			"itemdefid": 11,
+			"type": "playtimegenerator",
+			"bundle": "4x100",
+			"name": "DropLuckCoin",
+			"name_color":  "7D6D00",
+			"background_color":  "3C352E",
+			"description": "RandItem",
+			"tradable": false,
+			"marketable": false,
+			"use_drop_limit": true,
+			"drop_limit": 10
+		},
+		{
+			"itemdefid": 1,
+			"type": "item",
+			"name": "DoubleLaser"
+		},
+		{
+			"itemdefid": 2,
+			"type": "item",
+			"name": "Triplelaser"
+		},
+		{
+			"itemdefid": 3,
+			"type": "item",
+			"name": "Rocket"
+		},
+		{
+			"itemdefid": 4,
+			"type": "item",
+			"name": "Luck Coin",
+			"price": "1;USD99",
+			"description": "Luck Coin",
+			"background_color": "3C352E"
+		}
+	]
+}

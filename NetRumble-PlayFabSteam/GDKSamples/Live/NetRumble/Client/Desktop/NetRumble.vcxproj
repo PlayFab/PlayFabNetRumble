@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <RootNamespace>NetRumble</RootNamespace>
+    <ProjectGuid>{462c896e-dcc3-4d0b-91d4-efa80f3d7b4a}</ProjectGuid>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <Keyword>Win32Proj</Keyword>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <TargetRuntime>Native</TargetRuntime>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>NetRumble</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryWPath>$(LibraryWPath)</LibraryWPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryWPath>$(LibraryWPath)</LibraryWPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>d3d12.lib;dxgi.lib;dxguid.lib;DirectXTK12.lib;steam_api64.lib;PlayFabMultiplayerWin.lib;lib_json.lib;XPlatCppWindows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>NDEBUG;_GAMING_DESKTOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(ProjectDir)..\..\Dependencies\SteamSDK\public;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerWin10Preview\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <FXCompile>
+      <ShaderModel>6.0</ShaderModel>
+    </FXCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>d3d12.lib;dxgi.lib;dxguid.lib;DirectXTK12d.lib;steam_api64.lib;PlayFabMultiplayerWin.lib;lib_json.lib;XPlatCppWindows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_GAMING_DESKTOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(ProjectDir)..\..\Dependencies\SteamSDK\public;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerWin10Preview\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <FXCompile>
+      <ShaderModel>6.0</ShaderModel>
+    </FXCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Kits\Tools\d3dx12.h" />
+    <ClInclude Include="..\..\..\..\..\Kits\Tools\Texture.h" />
+    <ClInclude Include="..\..\Common\ArrayView.h" />
+    <ClInclude Include="..\..\Common\Asteroid.h" />
+    <ClInclude Include="..\..\Common\AsyncHelper.h" />
+    <ClInclude Include="..\..\Common\AudioManager.h" />
+    <ClInclude Include="..\..\Common\BatchRemovalCollection.h" />
+    <ClInclude Include="..\..\Common\CollisionManager.h" />
+    <ClInclude Include="..\..\Common\CollisionMath.h" />
+    <ClInclude Include="..\..\Common\DataBuffer.h" />
+    <ClInclude Include="..\..\Common\Debug.h" />
+    <ClInclude Include="..\..\Common\DebugOverlayScreen.h" />
+    <ClInclude Include="..\..\Common\DoubleLaserPowerUp.h" />
+    <ClInclude Include="..\..\Common\DoubleLaserWeapon.h" />
+    <ClInclude Include="..\..\Common\ErrorScreen.h" />
+    <ClInclude Include="..\..\Common\GameEventManager.h" />
+    <ClInclude Include="..\..\Common\GameLobbyScreen.h" />
+    <ClInclude Include="..\..\Common\GameplayObject.h" />
+    <ClInclude Include="..\..\Common\GamePlayScreen.h" />
+    <ClInclude Include="..\..\Common\GameScreen.h" />
+    <ClInclude Include="..\..\Common\GameStateManager.h" />
+    <ClInclude Include="..\..\Common\GuidUtil.h" />
+    <ClInclude Include="..\..\Common\InputManager.h" />
+    <ClInclude Include="..\..\Common\LaserProjectile.h" />
+    <ClInclude Include="..\..\Common\LaserWeapon.h" />
+    <ClInclude Include="..\..\Common\LeaderboardMenu.h" />
+    <ClInclude Include="..\..\Common\MainMenuScreen.h" />
+    <ClInclude Include="..\..\Common\Manager.h" />
+    <ClInclude Include="..\..\Common\Managers.h" />
+    <ClInclude Include="..\..\Common\MenuScreen.h" />
+    <ClInclude Include="..\..\Common\MineProjectile.h" />
+    <ClInclude Include="..\..\Common\MineWeapon.h" />
+    <ClInclude Include="..\..\Common\JoinFriendsMenu.h" />
+    <ClInclude Include="..\..\Common\NetworkMessages.h" />
+    <ClInclude Include="..\..\Common\OnlineManager.h" />
+    <ClInclude Include="..\..\Common\OptionsPopUpScreen.h" />
+    <ClInclude Include="..\..\Common\ParticleManager.h" />
+    <ClInclude Include="..\..\Common\PlayerState.h" />
+    <ClInclude Include="..\..\Common\PlayFabLobby.h" />
+    <ClInclude Include="..\..\Common\PlayFabLogin.h" />
+    <ClInclude Include="..\..\Common\PlayFabMatchmaking.h" />
+    <ClInclude Include="..\..\Common\PlayFabOnlineManager.h" />
+    <ClInclude Include="..\..\Common\PlayFabParty.h" />
+    <ClInclude Include="..\..\Common\PowerUp.h" />
+    <ClInclude Include="..\..\Common\Projectile.h" />
+    <ClInclude Include="..\..\Common\RandomMath.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX12\ContentManager.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX12\DeviceResources.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX12\RenderContext.h" />
+    <ClInclude Include="..\..\Common\Renderer\DX12\RenderManager.h" />
+    <ClInclude Include="..\..\Common\RocketPowerUp.h" />
+    <ClInclude Include="..\..\Common\RocketProjectile.h" />
+    <ClInclude Include="..\..\Common\RocketWeapon.h" />
+    <ClInclude Include="..\..\Common\ServerConfig.h" />
+    <ClInclude Include="..\..\Common\Ship.h" />
+    <ClInclude Include="..\..\Common\ShipInput.h" />
+    <ClInclude Include="..\..\Common\Starfield.h" />
+    <ClInclude Include="..\..\Common\StarfieldScreen.h" />
+    <ClInclude Include="..\..\Common\StatsAndAchievements.h" />
+    <ClInclude Include="..\..\Common\SteamLeaderboard.h" />
+    <ClInclude Include="..\..\Common\SteamInventory.h" />
+    <ClInclude Include="..\..\Common\STTOverlayScreen.h" />
+    <ClInclude Include="..\..\Common\Timer.h" />
+    <ClInclude Include="..\..\Common\TitleBackgroundScreen.h" />
+    <ClInclude Include="..\..\Common\TripleLaserPowerUp.h" />
+    <ClInclude Include="..\..\Common\TripleLaserWeapon.h" />
+    <ClInclude Include="..\..\Common\User.h" />
+    <ClInclude Include="..\..\Common\UserManager.h" />
+    <ClInclude Include="..\..\Common\UserStartupScreen.h" />
+    <ClInclude Include="..\..\Common\Weapon.h" />
+    <ClInclude Include="..\..\Common\World.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="..\..\Common\StepTimer.h" />
+    <ClInclude Include="..\..\Common\ScreenManager.h" />
+    <ClInclude Include="..\..\..\..\..\Kits\Tools\Json.h" />
+    <ClInclude Include="..\..\..\..\..\Kits\Tools\StringUtil.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Kits\Tools\Texture.cpp" />
+    <ClCompile Include="..\..\Common\Asteroid.cpp" />
+    <ClCompile Include="..\..\Common\AudioManager.cpp" />
+    <ClCompile Include="..\..\Common\CollisionManager.cpp" />
+    <ClCompile Include="..\..\Common\DataBuffer.cpp" />
+    <ClCompile Include="..\..\Common\Debug.cpp" />
+    <ClCompile Include="..\..\Common\DebugOverlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\DoubleLaserPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\DoubleLaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\ErrorScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameLobbyScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameplayObject.cpp" />
+    <ClCompile Include="..\..\Common\GamePlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameScreen.cpp" />
+    <ClCompile Include="..\..\Common\GameStateManager.cpp" />
+    <ClCompile Include="..\..\Common\InputManager.cpp" />
+    <ClCompile Include="..\..\Common\LaserProjectile.cpp" />
+    <ClCompile Include="..\..\Common\LaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabLobby.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabLogin.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabMatchmaking.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabMultiplayer.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabNetwork.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabOnlineManager.cpp" />
+    <ClCompile Include="..\..\Common\PlayFabParty.cpp" />
+    <ClCompile Include="..\..\Common\SteamLeaderboard.cpp" />
+    <ClCompile Include="..\..\Common\LeaderboardMenu.cpp" />
+    <ClCompile Include="..\..\Common\MainMenuScreen.cpp" />
+    <ClCompile Include="..\..\Common\Managers.cpp" />
+    <ClCompile Include="..\..\Common\MenuScreen.cpp" />
+    <ClCompile Include="..\..\Common\MineProjectile.cpp" />
+    <ClCompile Include="..\..\Common\MineWeapon.cpp" />
+    <ClCompile Include="..\..\Common\JoinFriendsMenu.cpp" />
+    <ClCompile Include="..\..\Common\NetworkMessages.cpp" />
+    <ClCompile Include="..\..\Common\OptionsPopUpScreen.cpp" />
+    <ClCompile Include="..\..\Common\ParticleManager.cpp" />
+    <ClCompile Include="..\..\Common\PlayerState.cpp" />
+    <ClCompile Include="..\..\Common\PowerUp.cpp" />
+    <ClCompile Include="..\..\Common\Projectile.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX12\ContentManager.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX12\DeviceResources.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX12\RenderContext.cpp" />
+    <ClCompile Include="..\..\Common\Renderer\DX12\RenderManager.cpp" />
+    <ClCompile Include="..\..\Common\RocketPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\RocketProjectile.cpp" />
+    <ClCompile Include="..\..\Common\RocketWeapon.cpp" />
+    <ClCompile Include="..\..\Common\Ship.cpp" />
+    <ClCompile Include="..\..\Common\ShipInput.cpp" />
+    <ClCompile Include="..\..\Common\Starfield.cpp" />
+    <ClCompile Include="..\..\Common\StarfieldScreen.cpp" />
+    <ClCompile Include="..\..\Common\StatsAndAchievements.cpp" />
+    <ClCompile Include="..\..\Common\SteamInventory.cpp" />
+    <ClCompile Include="..\..\Common\STTOverlayScreen.cpp" />
+    <ClCompile Include="..\..\Common\TitleBackgroundScreen.cpp" />
+    <ClCompile Include="..\..\Common\TripleLaserPowerUp.cpp" />
+    <ClCompile Include="..\..\Common\TripleLaserWeapon.cpp" />
+    <ClCompile Include="..\..\Common\UserStartupScreen.cpp" />
+    <ClCompile Include="..\..\Common\Weapon.cpp" />
+    <ClCompile Include="..\..\Common\World.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="..\..\..\..\..\Kits\Tools\StringUtil.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\ScreenManager.cpp" />
+    <ClCompile Include="..\..\Common\GameEventManager.cpp" />
+  </ItemGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerWin10Preview\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Link>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerWin10Preview\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)CopyAssets.bat $(OutputPath) $(SolutionDir)</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)CopyAssets.bat $(OutputPath) $(SolutionDir)</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\NetRumble_ReadMe_ja-jp.docx" />
+    <None Include="..\..\NetRumble_ReadMe_ko-kr.docx" />
+    <None Include="..\..\NetRumble_ReadMe_zh-cn.docx" />
+    <None Include="..\..\ReadMe.docx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <MGCCompile Include="MicrosoftGame.Config">
+    </MGCCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NetRumble.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Assets\Logo_32x32.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.6\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.targets" Condition="Exists('..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.6\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.6\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.1.7.6\build\native\Microsoft.PlayFab.PlayFabParty.Cpp.Windows.targets'))" />
+  </Target>
+</Project>
