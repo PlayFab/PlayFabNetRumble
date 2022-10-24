@@ -81,7 +81,8 @@ namespace PlayFab
             LoginIdentityProviderFacebookInstantGames,
             LoginIdentityProviderOpenIdConnect,
             LoginIdentityProviderApple,
-            LoginIdentityProviderNintendoSwitchAccount
+            LoginIdentityProviderNintendoSwitchAccount,
+            LoginIdentityProviderGooglePlayGames
         };
 
         inline void ToJsonEnum(const LoginIdentityProvider input, Json::Value& output)
@@ -189,6 +190,11 @@ namespace PlayFab
             if (input == LoginIdentityProvider::LoginIdentityProviderNintendoSwitchAccount)
             {
                 output = Json::Value("NintendoSwitchAccount");
+                return;
+            }
+            if (input == LoginIdentityProvider::LoginIdentityProviderGooglePlayGames)
+            {
+                output = Json::Value("GooglePlayGames");
                 return;
             }
         }
@@ -304,9 +310,48 @@ namespace PlayFab
                 output = LoginIdentityProvider::LoginIdentityProviderNintendoSwitchAccount;
                 return;
             }
+            if (inputStr == "GooglePlayGames")
+            {
+                output = LoginIdentityProvider::LoginIdentityProviderGooglePlayGames;
+                return;
+            }
         }
 
         // Authentication Classes
+        struct AuthenticateCustomIdRequest : public PlayFabRequestCommon
+        {
+            std::string CustomId;
+            std::map<std::string, std::string> CustomTags;
+
+            AuthenticateCustomIdRequest() :
+                PlayFabRequestCommon(),
+                CustomId(),
+                CustomTags()
+            {}
+
+            AuthenticateCustomIdRequest(const AuthenticateCustomIdRequest& src) :
+                PlayFabRequestCommon(),
+                CustomId(src.CustomId),
+                CustomTags(src.CustomTags)
+            {}
+
+            ~AuthenticateCustomIdRequest() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["CustomId"], CustomId);
+                FromJsonUtilS(input["CustomTags"], CustomTags);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_CustomId; ToJsonUtilS(CustomId, each_CustomId); output["CustomId"] = each_CustomId;
+                Json::Value each_CustomTags; ToJsonUtilS(CustomTags, each_CustomTags); output["CustomTags"] = each_CustomTags;
+                return output;
+            }
+        };
+
         struct EntityKey : public PlayFabBaseModel
         {
             std::string Id;
@@ -337,6 +382,137 @@ namespace PlayFab
                 Json::Value output;
                 Json::Value each_Id; ToJsonUtilS(Id, each_Id); output["Id"] = each_Id;
                 Json::Value each_Type; ToJsonUtilS(Type, each_Type); output["Type"] = each_Type;
+                return output;
+            }
+        };
+
+        struct EntityTokenResponse : public PlayFabResultCommon
+        {
+            Boxed<EntityKey> Entity;
+            std::string EntityToken;
+            Boxed<time_t> TokenExpiration;
+
+            EntityTokenResponse() :
+                PlayFabResultCommon(),
+                Entity(),
+                EntityToken(),
+                TokenExpiration()
+            {}
+
+            EntityTokenResponse(const EntityTokenResponse& src) :
+                PlayFabResultCommon(),
+                Entity(src.Entity),
+                EntityToken(src.EntityToken),
+                TokenExpiration(src.TokenExpiration)
+            {}
+
+            ~EntityTokenResponse() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilO(input["Entity"], Entity);
+                FromJsonUtilS(input["EntityToken"], EntityToken);
+                FromJsonUtilT(input["TokenExpiration"], TokenExpiration);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_Entity; ToJsonUtilO(Entity, each_Entity); output["Entity"] = each_Entity;
+                Json::Value each_EntityToken; ToJsonUtilS(EntityToken, each_EntityToken); output["EntityToken"] = each_EntityToken;
+                Json::Value each_TokenExpiration; ToJsonUtilT(TokenExpiration, each_TokenExpiration); output["TokenExpiration"] = each_TokenExpiration;
+                return output;
+            }
+        };
+
+        struct AuthenticateCustomIdResult : public PlayFabResultCommon
+        {
+            Boxed<EntityTokenResponse> EntityToken;
+            bool NewlyCreated;
+
+            AuthenticateCustomIdResult() :
+                PlayFabResultCommon(),
+                EntityToken(),
+                NewlyCreated()
+            {}
+
+            AuthenticateCustomIdResult(const AuthenticateCustomIdResult& src) :
+                PlayFabResultCommon(),
+                EntityToken(src.EntityToken),
+                NewlyCreated(src.NewlyCreated)
+            {}
+
+            ~AuthenticateCustomIdResult() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilO(input["EntityToken"], EntityToken);
+                FromJsonUtilP(input["NewlyCreated"], NewlyCreated);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_EntityToken; ToJsonUtilO(EntityToken, each_EntityToken); output["EntityToken"] = each_EntityToken;
+                Json::Value each_NewlyCreated; ToJsonUtilP(NewlyCreated, each_NewlyCreated); output["NewlyCreated"] = each_NewlyCreated;
+                return output;
+            }
+        };
+
+        struct DeleteRequest : public PlayFabRequestCommon
+        {
+            std::map<std::string, std::string> CustomTags;
+            EntityKey Entity;
+
+            DeleteRequest() :
+                PlayFabRequestCommon(),
+                CustomTags(),
+                Entity()
+            {}
+
+            DeleteRequest(const DeleteRequest& src) :
+                PlayFabRequestCommon(),
+                CustomTags(src.CustomTags),
+                Entity(src.Entity)
+            {}
+
+            ~DeleteRequest() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["CustomTags"], CustomTags);
+                FromJsonUtilO(input["Entity"], Entity);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_CustomTags; ToJsonUtilS(CustomTags, each_CustomTags); output["CustomTags"] = each_CustomTags;
+                Json::Value each_Entity; ToJsonUtilO(Entity, each_Entity); output["Entity"] = each_Entity;
+                return output;
+            }
+        };
+
+        struct EmptyResponse : public PlayFabResultCommon
+        {
+
+            EmptyResponse() :
+                PlayFabResultCommon()
+            {}
+
+            EmptyResponse(const EmptyResponse&) :
+                PlayFabResultCommon()
+            {}
+
+            ~EmptyResponse() = default;
+
+            void FromJson(const Json::Value&) override
+            {
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
                 return output;
             }
         };

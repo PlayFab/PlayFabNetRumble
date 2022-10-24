@@ -2958,6 +2958,40 @@ namespace PlayFab
             }
         };
 
+        struct ServerResourceConstraintParams : public PlayFabBaseModel
+        {
+            double CpuLimit;
+            double MemoryLimitGB;
+
+            ServerResourceConstraintParams() :
+                PlayFabBaseModel(),
+                CpuLimit(),
+                MemoryLimitGB()
+            {}
+
+            ServerResourceConstraintParams(const ServerResourceConstraintParams& src) :
+                PlayFabBaseModel(),
+                CpuLimit(src.CpuLimit),
+                MemoryLimitGB(src.MemoryLimitGB)
+            {}
+
+            ~ServerResourceConstraintParams() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilP(input["CpuLimit"], CpuLimit);
+                FromJsonUtilP(input["MemoryLimitGB"], MemoryLimitGB);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_CpuLimit; ToJsonUtilP(CpuLimit, each_CpuLimit); output["CpuLimit"] = each_CpuLimit;
+                Json::Value each_MemoryLimitGB; ToJsonUtilP(MemoryLimitGB, each_MemoryLimitGB); output["MemoryLimitGB"] = each_MemoryLimitGB;
+                return output;
+            }
+        };
+
         struct CreateBuildWithCustomContainerRequest : public PlayFabRequestCommon
         {
             Boxed<bool> AreAssetsReadonly;
@@ -2974,6 +3008,7 @@ namespace PlayFab
             Int32 MultiplayerServerCountPerVm;
             std::list<Port> Ports;
             std::list<BuildRegionParams> RegionConfigurations;
+            Boxed<ServerResourceConstraintParams> ServerResourceConstraints;
             Boxed<bool> UseStreamingForAssetDownloads;
             Boxed<AzureVmSize> VmSize;
 
@@ -2993,6 +3028,7 @@ namespace PlayFab
                 MultiplayerServerCountPerVm(),
                 Ports(),
                 RegionConfigurations(),
+                ServerResourceConstraints(),
                 UseStreamingForAssetDownloads(),
                 VmSize()
             {}
@@ -3013,6 +3049,7 @@ namespace PlayFab
                 MultiplayerServerCountPerVm(src.MultiplayerServerCountPerVm),
                 Ports(src.Ports),
                 RegionConfigurations(src.RegionConfigurations),
+                ServerResourceConstraints(src.ServerResourceConstraints),
                 UseStreamingForAssetDownloads(src.UseStreamingForAssetDownloads),
                 VmSize(src.VmSize)
             {}
@@ -3035,6 +3072,7 @@ namespace PlayFab
                 FromJsonUtilP(input["MultiplayerServerCountPerVm"], MultiplayerServerCountPerVm);
                 FromJsonUtilO(input["Ports"], Ports);
                 FromJsonUtilO(input["RegionConfigurations"], RegionConfigurations);
+                FromJsonUtilO(input["ServerResourceConstraints"], ServerResourceConstraints);
                 FromJsonUtilP(input["UseStreamingForAssetDownloads"], UseStreamingForAssetDownloads);
                 FromJsonUtilE(input["VmSize"], VmSize);
             }
@@ -3056,6 +3094,7 @@ namespace PlayFab
                 Json::Value each_MultiplayerServerCountPerVm; ToJsonUtilP(MultiplayerServerCountPerVm, each_MultiplayerServerCountPerVm); output["MultiplayerServerCountPerVm"] = each_MultiplayerServerCountPerVm;
                 Json::Value each_Ports; ToJsonUtilO(Ports, each_Ports); output["Ports"] = each_Ports;
                 Json::Value each_RegionConfigurations; ToJsonUtilO(RegionConfigurations, each_RegionConfigurations); output["RegionConfigurations"] = each_RegionConfigurations;
+                Json::Value each_ServerResourceConstraints; ToJsonUtilO(ServerResourceConstraints, each_ServerResourceConstraints); output["ServerResourceConstraints"] = each_ServerResourceConstraints;
                 Json::Value each_UseStreamingForAssetDownloads; ToJsonUtilP(UseStreamingForAssetDownloads, each_UseStreamingForAssetDownloads); output["UseStreamingForAssetDownloads"] = each_UseStreamingForAssetDownloads;
                 Json::Value each_VmSize; ToJsonUtilE(VmSize, each_VmSize); output["VmSize"] = each_VmSize;
                 return output;
@@ -3158,6 +3197,7 @@ namespace PlayFab
             std::string OsPlatform;
             std::list<Port> Ports;
             std::list<BuildRegion> RegionConfigurations;
+            Boxed<ServerResourceConstraintParams> ServerResourceConstraints;
             std::string ServerType;
             Boxed<bool> UseStreamingForAssetDownloads;
             Boxed<AzureVmSize> VmSize;
@@ -3180,6 +3220,7 @@ namespace PlayFab
                 OsPlatform(),
                 Ports(),
                 RegionConfigurations(),
+                ServerResourceConstraints(),
                 ServerType(),
                 UseStreamingForAssetDownloads(),
                 VmSize()
@@ -3203,6 +3244,7 @@ namespace PlayFab
                 OsPlatform(src.OsPlatform),
                 Ports(src.Ports),
                 RegionConfigurations(src.RegionConfigurations),
+                ServerResourceConstraints(src.ServerResourceConstraints),
                 ServerType(src.ServerType),
                 UseStreamingForAssetDownloads(src.UseStreamingForAssetDownloads),
                 VmSize(src.VmSize)
@@ -3228,6 +3270,7 @@ namespace PlayFab
                 FromJsonUtilS(input["OsPlatform"], OsPlatform);
                 FromJsonUtilO(input["Ports"], Ports);
                 FromJsonUtilO(input["RegionConfigurations"], RegionConfigurations);
+                FromJsonUtilO(input["ServerResourceConstraints"], ServerResourceConstraints);
                 FromJsonUtilS(input["ServerType"], ServerType);
                 FromJsonUtilP(input["UseStreamingForAssetDownloads"], UseStreamingForAssetDownloads);
                 FromJsonUtilE(input["VmSize"], VmSize);
@@ -3252,6 +3295,7 @@ namespace PlayFab
                 Json::Value each_OsPlatform; ToJsonUtilS(OsPlatform, each_OsPlatform); output["OsPlatform"] = each_OsPlatform;
                 Json::Value each_Ports; ToJsonUtilO(Ports, each_Ports); output["Ports"] = each_Ports;
                 Json::Value each_RegionConfigurations; ToJsonUtilO(RegionConfigurations, each_RegionConfigurations); output["RegionConfigurations"] = each_RegionConfigurations;
+                Json::Value each_ServerResourceConstraints; ToJsonUtilO(ServerResourceConstraints, each_ServerResourceConstraints); output["ServerResourceConstraints"] = each_ServerResourceConstraints;
                 Json::Value each_ServerType; ToJsonUtilS(ServerType, each_ServerType); output["ServerType"] = each_ServerType;
                 Json::Value each_UseStreamingForAssetDownloads; ToJsonUtilP(UseStreamingForAssetDownloads, each_UseStreamingForAssetDownloads); output["UseStreamingForAssetDownloads"] = each_UseStreamingForAssetDownloads;
                 Json::Value each_VmSize; ToJsonUtilE(VmSize, each_VmSize); output["VmSize"] = each_VmSize;
@@ -3347,6 +3391,7 @@ namespace PlayFab
             Int32 MultiplayerServerCountPerVm;
             std::list<Port> Ports;
             std::list<BuildRegionParams> RegionConfigurations;
+            Boxed<ServerResourceConstraintParams> ServerResourceConstraints;
             std::string StartMultiplayerServerCommand;
             Boxed<bool> UseStreamingForAssetDownloads;
             Boxed<AzureVmSize> VmSize;
@@ -3367,6 +3412,7 @@ namespace PlayFab
                 MultiplayerServerCountPerVm(),
                 Ports(),
                 RegionConfigurations(),
+                ServerResourceConstraints(),
                 StartMultiplayerServerCommand(),
                 UseStreamingForAssetDownloads(),
                 VmSize(),
@@ -3388,6 +3434,7 @@ namespace PlayFab
                 MultiplayerServerCountPerVm(src.MultiplayerServerCountPerVm),
                 Ports(src.Ports),
                 RegionConfigurations(src.RegionConfigurations),
+                ServerResourceConstraints(src.ServerResourceConstraints),
                 StartMultiplayerServerCommand(src.StartMultiplayerServerCommand),
                 UseStreamingForAssetDownloads(src.UseStreamingForAssetDownloads),
                 VmSize(src.VmSize),
@@ -3411,6 +3458,7 @@ namespace PlayFab
                 FromJsonUtilP(input["MultiplayerServerCountPerVm"], MultiplayerServerCountPerVm);
                 FromJsonUtilO(input["Ports"], Ports);
                 FromJsonUtilO(input["RegionConfigurations"], RegionConfigurations);
+                FromJsonUtilO(input["ServerResourceConstraints"], ServerResourceConstraints);
                 FromJsonUtilS(input["StartMultiplayerServerCommand"], StartMultiplayerServerCommand);
                 FromJsonUtilP(input["UseStreamingForAssetDownloads"], UseStreamingForAssetDownloads);
                 FromJsonUtilE(input["VmSize"], VmSize);
@@ -3433,6 +3481,7 @@ namespace PlayFab
                 Json::Value each_MultiplayerServerCountPerVm; ToJsonUtilP(MultiplayerServerCountPerVm, each_MultiplayerServerCountPerVm); output["MultiplayerServerCountPerVm"] = each_MultiplayerServerCountPerVm;
                 Json::Value each_Ports; ToJsonUtilO(Ports, each_Ports); output["Ports"] = each_Ports;
                 Json::Value each_RegionConfigurations; ToJsonUtilO(RegionConfigurations, each_RegionConfigurations); output["RegionConfigurations"] = each_RegionConfigurations;
+                Json::Value each_ServerResourceConstraints; ToJsonUtilO(ServerResourceConstraints, each_ServerResourceConstraints); output["ServerResourceConstraints"] = each_ServerResourceConstraints;
                 Json::Value each_StartMultiplayerServerCommand; ToJsonUtilS(StartMultiplayerServerCommand, each_StartMultiplayerServerCommand); output["StartMultiplayerServerCommand"] = each_StartMultiplayerServerCommand;
                 Json::Value each_UseStreamingForAssetDownloads; ToJsonUtilP(UseStreamingForAssetDownloads, each_UseStreamingForAssetDownloads); output["UseStreamingForAssetDownloads"] = each_UseStreamingForAssetDownloads;
                 Json::Value each_VmSize; ToJsonUtilE(VmSize, each_VmSize); output["VmSize"] = each_VmSize;
@@ -3458,6 +3507,7 @@ namespace PlayFab
             std::string OsPlatform;
             std::list<Port> Ports;
             std::list<BuildRegion> RegionConfigurations;
+            Boxed<ServerResourceConstraintParams> ServerResourceConstraints;
             std::string ServerType;
             std::string StartMultiplayerServerCommand;
             Boxed<bool> UseStreamingForAssetDownloads;
@@ -3480,6 +3530,7 @@ namespace PlayFab
                 OsPlatform(),
                 Ports(),
                 RegionConfigurations(),
+                ServerResourceConstraints(),
                 ServerType(),
                 StartMultiplayerServerCommand(),
                 UseStreamingForAssetDownloads(),
@@ -3503,6 +3554,7 @@ namespace PlayFab
                 OsPlatform(src.OsPlatform),
                 Ports(src.Ports),
                 RegionConfigurations(src.RegionConfigurations),
+                ServerResourceConstraints(src.ServerResourceConstraints),
                 ServerType(src.ServerType),
                 StartMultiplayerServerCommand(src.StartMultiplayerServerCommand),
                 UseStreamingForAssetDownloads(src.UseStreamingForAssetDownloads),
@@ -3528,6 +3580,7 @@ namespace PlayFab
                 FromJsonUtilS(input["OsPlatform"], OsPlatform);
                 FromJsonUtilO(input["Ports"], Ports);
                 FromJsonUtilO(input["RegionConfigurations"], RegionConfigurations);
+                FromJsonUtilO(input["ServerResourceConstraints"], ServerResourceConstraints);
                 FromJsonUtilS(input["ServerType"], ServerType);
                 FromJsonUtilS(input["StartMultiplayerServerCommand"], StartMultiplayerServerCommand);
                 FromJsonUtilP(input["UseStreamingForAssetDownloads"], UseStreamingForAssetDownloads);
@@ -3552,6 +3605,7 @@ namespace PlayFab
                 Json::Value each_OsPlatform; ToJsonUtilS(OsPlatform, each_OsPlatform); output["OsPlatform"] = each_OsPlatform;
                 Json::Value each_Ports; ToJsonUtilO(Ports, each_Ports); output["Ports"] = each_Ports;
                 Json::Value each_RegionConfigurations; ToJsonUtilO(RegionConfigurations, each_RegionConfigurations); output["RegionConfigurations"] = each_RegionConfigurations;
+                Json::Value each_ServerResourceConstraints; ToJsonUtilO(ServerResourceConstraints, each_ServerResourceConstraints); output["ServerResourceConstraints"] = each_ServerResourceConstraints;
                 Json::Value each_ServerType; ToJsonUtilS(ServerType, each_ServerType); output["ServerType"] = each_ServerType;
                 Json::Value each_StartMultiplayerServerCommand; ToJsonUtilS(StartMultiplayerServerCommand, each_StartMultiplayerServerCommand); output["StartMultiplayerServerCommand"] = each_StartMultiplayerServerCommand;
                 Json::Value each_UseStreamingForAssetDownloads; ToJsonUtilP(UseStreamingForAssetDownloads, each_UseStreamingForAssetDownloads); output["UseStreamingForAssetDownloads"] = each_UseStreamingForAssetDownloads;
@@ -4941,6 +4995,7 @@ namespace PlayFab
             std::list<EntityKey> Friends;
             std::string LobbyId;
             Uint32 MaxPlayers;
+            Boxed<MembershipLock> pfMembershipLock;
             EntityKey Owner;
             std::map<std::string, std::string> SearchData;
 
@@ -4951,6 +5006,7 @@ namespace PlayFab
                 Friends(),
                 LobbyId(),
                 MaxPlayers(),
+                pfMembershipLock(),
                 Owner(),
                 SearchData()
             {}
@@ -4962,6 +5018,7 @@ namespace PlayFab
                 Friends(src.Friends),
                 LobbyId(src.LobbyId),
                 MaxPlayers(src.MaxPlayers),
+                pfMembershipLock(src.pfMembershipLock),
                 Owner(src.Owner),
                 SearchData(src.SearchData)
             {}
@@ -4975,6 +5032,7 @@ namespace PlayFab
                 FromJsonUtilO(input["Friends"], Friends);
                 FromJsonUtilS(input["LobbyId"], LobbyId);
                 FromJsonUtilP(input["MaxPlayers"], MaxPlayers);
+                FromJsonUtilE(input["MembershipLock"], pfMembershipLock);
                 FromJsonUtilO(input["Owner"], Owner);
                 FromJsonUtilS(input["SearchData"], SearchData);
             }
@@ -4987,6 +5045,7 @@ namespace PlayFab
                 Json::Value each_Friends; ToJsonUtilO(Friends, each_Friends); output["Friends"] = each_Friends;
                 Json::Value each_LobbyId; ToJsonUtilS(LobbyId, each_LobbyId); output["LobbyId"] = each_LobbyId;
                 Json::Value each_MaxPlayers; ToJsonUtilP(MaxPlayers, each_MaxPlayers); output["MaxPlayers"] = each_MaxPlayers;
+                Json::Value each_pfMembershipLock; ToJsonUtilE(pfMembershipLock, each_pfMembershipLock); output["MembershipLock"] = each_pfMembershipLock;
                 Json::Value each_Owner; ToJsonUtilO(Owner, each_Owner); output["Owner"] = each_Owner;
                 Json::Value each_SearchData; ToJsonUtilS(SearchData, each_SearchData); output["SearchData"] = each_SearchData;
                 return output;
@@ -5111,6 +5170,7 @@ namespace PlayFab
             Uint32 CurrentPlayers;
             std::string LobbyId;
             Uint32 MaxPlayers;
+            Boxed<MembershipLock> pfMembershipLock;
             EntityKey Owner;
             std::map<std::string, std::string> SearchData;
 
@@ -5120,6 +5180,7 @@ namespace PlayFab
                 CurrentPlayers(),
                 LobbyId(),
                 MaxPlayers(),
+                pfMembershipLock(),
                 Owner(),
                 SearchData()
             {}
@@ -5130,6 +5191,7 @@ namespace PlayFab
                 CurrentPlayers(src.CurrentPlayers),
                 LobbyId(src.LobbyId),
                 MaxPlayers(src.MaxPlayers),
+                pfMembershipLock(src.pfMembershipLock),
                 Owner(src.Owner),
                 SearchData(src.SearchData)
             {}
@@ -5142,6 +5204,7 @@ namespace PlayFab
                 FromJsonUtilP(input["CurrentPlayers"], CurrentPlayers);
                 FromJsonUtilS(input["LobbyId"], LobbyId);
                 FromJsonUtilP(input["MaxPlayers"], MaxPlayers);
+                FromJsonUtilE(input["MembershipLock"], pfMembershipLock);
                 FromJsonUtilO(input["Owner"], Owner);
                 FromJsonUtilS(input["SearchData"], SearchData);
             }
@@ -5153,6 +5216,7 @@ namespace PlayFab
                 Json::Value each_CurrentPlayers; ToJsonUtilP(CurrentPlayers, each_CurrentPlayers); output["CurrentPlayers"] = each_CurrentPlayers;
                 Json::Value each_LobbyId; ToJsonUtilS(LobbyId, each_LobbyId); output["LobbyId"] = each_LobbyId;
                 Json::Value each_MaxPlayers; ToJsonUtilP(MaxPlayers, each_MaxPlayers); output["MaxPlayers"] = each_MaxPlayers;
+                Json::Value each_pfMembershipLock; ToJsonUtilE(pfMembershipLock, each_pfMembershipLock); output["MembershipLock"] = each_pfMembershipLock;
                 Json::Value each_Owner; ToJsonUtilO(Owner, each_Owner); output["Owner"] = each_Owner;
                 Json::Value each_SearchData; ToJsonUtilS(SearchData, each_SearchData); output["SearchData"] = each_SearchData;
                 return output;
@@ -5415,6 +5479,7 @@ namespace PlayFab
             std::string OsPlatform;
             std::list<Port> Ports;
             std::list<BuildRegion> RegionConfigurations;
+            Boxed<ServerResourceConstraintParams> ServerResourceConstraints;
             std::string ServerType;
             std::string StartMultiplayerServerCommand;
             Boxed<AzureVmSize> VmSize;
@@ -5437,6 +5502,7 @@ namespace PlayFab
                 OsPlatform(),
                 Ports(),
                 RegionConfigurations(),
+                ServerResourceConstraints(),
                 ServerType(),
                 StartMultiplayerServerCommand(),
                 VmSize()
@@ -5460,6 +5526,7 @@ namespace PlayFab
                 OsPlatform(src.OsPlatform),
                 Ports(src.Ports),
                 RegionConfigurations(src.RegionConfigurations),
+                ServerResourceConstraints(src.ServerResourceConstraints),
                 ServerType(src.ServerType),
                 StartMultiplayerServerCommand(src.StartMultiplayerServerCommand),
                 VmSize(src.VmSize)
@@ -5485,6 +5552,7 @@ namespace PlayFab
                 FromJsonUtilS(input["OsPlatform"], OsPlatform);
                 FromJsonUtilO(input["Ports"], Ports);
                 FromJsonUtilO(input["RegionConfigurations"], RegionConfigurations);
+                FromJsonUtilO(input["ServerResourceConstraints"], ServerResourceConstraints);
                 FromJsonUtilS(input["ServerType"], ServerType);
                 FromJsonUtilS(input["StartMultiplayerServerCommand"], StartMultiplayerServerCommand);
                 FromJsonUtilE(input["VmSize"], VmSize);
@@ -5509,6 +5577,7 @@ namespace PlayFab
                 Json::Value each_OsPlatform; ToJsonUtilS(OsPlatform, each_OsPlatform); output["OsPlatform"] = each_OsPlatform;
                 Json::Value each_Ports; ToJsonUtilO(Ports, each_Ports); output["Ports"] = each_Ports;
                 Json::Value each_RegionConfigurations; ToJsonUtilO(RegionConfigurations, each_RegionConfigurations); output["RegionConfigurations"] = each_RegionConfigurations;
+                Json::Value each_ServerResourceConstraints; ToJsonUtilO(ServerResourceConstraints, each_ServerResourceConstraints); output["ServerResourceConstraints"] = each_ServerResourceConstraints;
                 Json::Value each_ServerType; ToJsonUtilS(ServerType, each_ServerType); output["ServerType"] = each_ServerType;
                 Json::Value each_StartMultiplayerServerCommand; ToJsonUtilS(StartMultiplayerServerCommand, each_StartMultiplayerServerCommand); output["StartMultiplayerServerCommand"] = each_StartMultiplayerServerCommand;
                 Json::Value each_VmSize; ToJsonUtilE(VmSize, each_VmSize); output["VmSize"] = each_VmSize;
@@ -5959,24 +6028,18 @@ namespace PlayFab
 
         struct GetMultiplayerServerDetailsRequest : public PlayFabRequestCommon
         {
-            std::string BuildId;
             std::map<std::string, std::string> CustomTags;
-            std::string Region;
             std::string SessionId;
 
             GetMultiplayerServerDetailsRequest() :
                 PlayFabRequestCommon(),
-                BuildId(),
                 CustomTags(),
-                Region(),
                 SessionId()
             {}
 
             GetMultiplayerServerDetailsRequest(const GetMultiplayerServerDetailsRequest& src) :
                 PlayFabRequestCommon(),
-                BuildId(src.BuildId),
                 CustomTags(src.CustomTags),
-                Region(src.Region),
                 SessionId(src.SessionId)
             {}
 
@@ -5984,18 +6047,14 @@ namespace PlayFab
 
             void FromJson(const Json::Value& input) override
             {
-                FromJsonUtilS(input["BuildId"], BuildId);
                 FromJsonUtilS(input["CustomTags"], CustomTags);
-                FromJsonUtilS(input["Region"], Region);
                 FromJsonUtilS(input["SessionId"], SessionId);
             }
 
             Json::Value ToJson() const override
             {
                 Json::Value output;
-                Json::Value each_BuildId; ToJsonUtilS(BuildId, each_BuildId); output["BuildId"] = each_BuildId;
                 Json::Value each_CustomTags; ToJsonUtilS(CustomTags, each_CustomTags); output["CustomTags"] = each_CustomTags;
-                Json::Value each_Region; ToJsonUtilS(Region, each_Region); output["Region"] = each_Region;
                 Json::Value each_SessionId; ToJsonUtilS(SessionId, each_SessionId); output["SessionId"] = each_SessionId;
                 return output;
             }

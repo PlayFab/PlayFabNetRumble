@@ -4874,7 +4874,8 @@ namespace PlayFab
             LoginIdentityProviderFacebookInstantGames,
             LoginIdentityProviderOpenIdConnect,
             LoginIdentityProviderApple,
-            LoginIdentityProviderNintendoSwitchAccount
+            LoginIdentityProviderNintendoSwitchAccount,
+            LoginIdentityProviderGooglePlayGames
         };
 
         inline void ToJsonEnum(const LoginIdentityProvider input, Json::Value& output)
@@ -4982,6 +4983,11 @@ namespace PlayFab
             if (input == LoginIdentityProvider::LoginIdentityProviderNintendoSwitchAccount)
             {
                 output = Json::Value("NintendoSwitchAccount");
+                return;
+            }
+            if (input == LoginIdentityProvider::LoginIdentityProviderGooglePlayGames)
+            {
+                output = Json::Value("GooglePlayGames");
                 return;
             }
         }
@@ -5095,6 +5101,11 @@ namespace PlayFab
             if (inputStr == "NintendoSwitchAccount")
             {
                 output = LoginIdentityProvider::LoginIdentityProviderNintendoSwitchAccount;
+                return;
+            }
+            if (inputStr == "GooglePlayGames")
+            {
+                output = LoginIdentityProvider::LoginIdentityProviderGooglePlayGames;
                 return;
             }
         }
@@ -5960,7 +5971,8 @@ namespace PlayFab
             UserOriginationFacebookInstantGamesId,
             UserOriginationOpenIdConnect,
             UserOriginationApple,
-            UserOriginationNintendoSwitchAccount
+            UserOriginationNintendoSwitchAccount,
+            UserOriginationGooglePlayGames
         };
 
         inline void ToJsonEnum(const UserOrigination input, Json::Value& output)
@@ -6078,6 +6090,11 @@ namespace PlayFab
             if (input == UserOrigination::UserOriginationNintendoSwitchAccount)
             {
                 output = Json::Value("NintendoSwitchAccount");
+                return;
+            }
+            if (input == UserOrigination::UserOriginationGooglePlayGames)
+            {
+                output = Json::Value("GooglePlayGames");
                 return;
             }
         }
@@ -6201,6 +6218,11 @@ namespace PlayFab
             if (inputStr == "NintendoSwitchAccount")
             {
                 output = UserOrigination::UserOriginationNintendoSwitchAccount;
+                return;
+            }
+            if (inputStr == "GooglePlayGames")
+            {
+                output = UserOrigination::UserOriginationGooglePlayGames;
                 return;
             }
         }
@@ -9544,15 +9566,18 @@ namespace PlayFab
         struct UserXboxInfo : public PlayFabBaseModel
         {
             std::string XboxUserId;
+            std::string XboxUserSandbox;
 
             UserXboxInfo() :
                 PlayFabBaseModel(),
-                XboxUserId()
+                XboxUserId(),
+                XboxUserSandbox()
             {}
 
             UserXboxInfo(const UserXboxInfo& src) :
                 PlayFabBaseModel(),
-                XboxUserId(src.XboxUserId)
+                XboxUserId(src.XboxUserId),
+                XboxUserSandbox(src.XboxUserSandbox)
             {}
 
             ~UserXboxInfo() = default;
@@ -9560,12 +9585,14 @@ namespace PlayFab
             void FromJson(const Json::Value& input) override
             {
                 FromJsonUtilS(input["XboxUserId"], XboxUserId);
+                FromJsonUtilS(input["XboxUserSandbox"], XboxUserSandbox);
             }
 
             Json::Value ToJson() const override
             {
                 Json::Value output;
                 Json::Value each_XboxUserId; ToJsonUtilS(XboxUserId, each_XboxUserId); output["XboxUserId"] = each_XboxUserId;
+                Json::Value each_XboxUserSandbox; ToJsonUtilS(XboxUserSandbox, each_XboxUserSandbox); output["XboxUserSandbox"] = each_XboxUserSandbox;
                 return output;
             }
         };
@@ -10028,6 +10055,45 @@ namespace PlayFab
             }
         };
 
+        struct UserGooglePlayGamesInfo : public PlayFabBaseModel
+        {
+            std::string GooglePlayGamesPlayerAvatarImageUrl;
+            std::string GooglePlayGamesPlayerDisplayName;
+            std::string GooglePlayGamesPlayerId;
+
+            UserGooglePlayGamesInfo() :
+                PlayFabBaseModel(),
+                GooglePlayGamesPlayerAvatarImageUrl(),
+                GooglePlayGamesPlayerDisplayName(),
+                GooglePlayGamesPlayerId()
+            {}
+
+            UserGooglePlayGamesInfo(const UserGooglePlayGamesInfo& src) :
+                PlayFabBaseModel(),
+                GooglePlayGamesPlayerAvatarImageUrl(src.GooglePlayGamesPlayerAvatarImageUrl),
+                GooglePlayGamesPlayerDisplayName(src.GooglePlayGamesPlayerDisplayName),
+                GooglePlayGamesPlayerId(src.GooglePlayGamesPlayerId)
+            {}
+
+            ~UserGooglePlayGamesInfo() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["GooglePlayGamesPlayerAvatarImageUrl"], GooglePlayGamesPlayerAvatarImageUrl);
+                FromJsonUtilS(input["GooglePlayGamesPlayerDisplayName"], GooglePlayGamesPlayerDisplayName);
+                FromJsonUtilS(input["GooglePlayGamesPlayerId"], GooglePlayGamesPlayerId);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_GooglePlayGamesPlayerAvatarImageUrl; ToJsonUtilS(GooglePlayGamesPlayerAvatarImageUrl, each_GooglePlayGamesPlayerAvatarImageUrl); output["GooglePlayGamesPlayerAvatarImageUrl"] = each_GooglePlayGamesPlayerAvatarImageUrl;
+                Json::Value each_GooglePlayGamesPlayerDisplayName; ToJsonUtilS(GooglePlayGamesPlayerDisplayName, each_GooglePlayGamesPlayerDisplayName); output["GooglePlayGamesPlayerDisplayName"] = each_GooglePlayGamesPlayerDisplayName;
+                Json::Value each_GooglePlayGamesPlayerId; ToJsonUtilS(GooglePlayGamesPlayerId, each_GooglePlayGamesPlayerId); output["GooglePlayGamesPlayerId"] = each_GooglePlayGamesPlayerId;
+                return output;
+            }
+        };
+
         struct UserIosDeviceInfo : public PlayFabBaseModel
         {
             std::string IosDeviceId;
@@ -10325,6 +10391,7 @@ namespace PlayFab
             Boxed<UserFacebookInstantGamesIdInfo> FacebookInstantGamesIdInfo;
             Boxed<UserGameCenterInfo> GameCenterInfo;
             Boxed<UserGoogleInfo> GoogleInfo;
+            Boxed<UserGooglePlayGamesInfo> GooglePlayGamesInfo;
             Boxed<UserIosDeviceInfo> IosDeviceInfo;
             Boxed<UserKongregateInfo> KongregateInfo;
             Boxed<UserNintendoSwitchAccountIdInfo> NintendoSwitchAccountInfo;
@@ -10349,6 +10416,7 @@ namespace PlayFab
                 FacebookInstantGamesIdInfo(),
                 GameCenterInfo(),
                 GoogleInfo(),
+                GooglePlayGamesInfo(),
                 IosDeviceInfo(),
                 KongregateInfo(),
                 NintendoSwitchAccountInfo(),
@@ -10374,6 +10442,7 @@ namespace PlayFab
                 FacebookInstantGamesIdInfo(src.FacebookInstantGamesIdInfo),
                 GameCenterInfo(src.GameCenterInfo),
                 GoogleInfo(src.GoogleInfo),
+                GooglePlayGamesInfo(src.GooglePlayGamesInfo),
                 IosDeviceInfo(src.IosDeviceInfo),
                 KongregateInfo(src.KongregateInfo),
                 NintendoSwitchAccountInfo(src.NintendoSwitchAccountInfo),
@@ -10401,6 +10470,7 @@ namespace PlayFab
                 FromJsonUtilO(input["FacebookInstantGamesIdInfo"], FacebookInstantGamesIdInfo);
                 FromJsonUtilO(input["GameCenterInfo"], GameCenterInfo);
                 FromJsonUtilO(input["GoogleInfo"], GoogleInfo);
+                FromJsonUtilO(input["GooglePlayGamesInfo"], GooglePlayGamesInfo);
                 FromJsonUtilO(input["IosDeviceInfo"], IosDeviceInfo);
                 FromJsonUtilO(input["KongregateInfo"], KongregateInfo);
                 FromJsonUtilO(input["NintendoSwitchAccountInfo"], NintendoSwitchAccountInfo);
@@ -10427,6 +10497,7 @@ namespace PlayFab
                 Json::Value each_FacebookInstantGamesIdInfo; ToJsonUtilO(FacebookInstantGamesIdInfo, each_FacebookInstantGamesIdInfo); output["FacebookInstantGamesIdInfo"] = each_FacebookInstantGamesIdInfo;
                 Json::Value each_GameCenterInfo; ToJsonUtilO(GameCenterInfo, each_GameCenterInfo); output["GameCenterInfo"] = each_GameCenterInfo;
                 Json::Value each_GoogleInfo; ToJsonUtilO(GoogleInfo, each_GoogleInfo); output["GoogleInfo"] = each_GoogleInfo;
+                Json::Value each_GooglePlayGamesInfo; ToJsonUtilO(GooglePlayGamesInfo, each_GooglePlayGamesInfo); output["GooglePlayGamesInfo"] = each_GooglePlayGamesInfo;
                 Json::Value each_IosDeviceInfo; ToJsonUtilO(IosDeviceInfo, each_IosDeviceInfo); output["IosDeviceInfo"] = each_IosDeviceInfo;
                 Json::Value each_KongregateInfo; ToJsonUtilO(KongregateInfo, each_KongregateInfo); output["KongregateInfo"] = each_KongregateInfo;
                 Json::Value each_NintendoSwitchAccountInfo; ToJsonUtilO(NintendoSwitchAccountInfo, each_NintendoSwitchAccountInfo); output["NintendoSwitchAccountInfo"] = each_NintendoSwitchAccountInfo;
@@ -13061,6 +13132,98 @@ namespace PlayFab
             }
         };
 
+        struct GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest : public PlayFabRequestCommon
+        {
+            std::list<std::string> GooglePlayGamesPlayerIDs;
+
+            GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest() :
+                PlayFabRequestCommon(),
+                GooglePlayGamesPlayerIDs()
+            {}
+
+            GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest(const GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest& src) :
+                PlayFabRequestCommon(),
+                GooglePlayGamesPlayerIDs(src.GooglePlayGamesPlayerIDs)
+            {}
+
+            ~GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["GooglePlayGamesPlayerIDs"], GooglePlayGamesPlayerIDs);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_GooglePlayGamesPlayerIDs; ToJsonUtilS(GooglePlayGamesPlayerIDs, each_GooglePlayGamesPlayerIDs); output["GooglePlayGamesPlayerIDs"] = each_GooglePlayGamesPlayerIDs;
+                return output;
+            }
+        };
+
+        struct GooglePlayGamesPlayFabIdPair : public PlayFabBaseModel
+        {
+            std::string GooglePlayGamesPlayerId;
+            std::string PlayFabId;
+
+            GooglePlayGamesPlayFabIdPair() :
+                PlayFabBaseModel(),
+                GooglePlayGamesPlayerId(),
+                PlayFabId()
+            {}
+
+            GooglePlayGamesPlayFabIdPair(const GooglePlayGamesPlayFabIdPair& src) :
+                PlayFabBaseModel(),
+                GooglePlayGamesPlayerId(src.GooglePlayGamesPlayerId),
+                PlayFabId(src.PlayFabId)
+            {}
+
+            ~GooglePlayGamesPlayFabIdPair() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["GooglePlayGamesPlayerId"], GooglePlayGamesPlayerId);
+                FromJsonUtilS(input["PlayFabId"], PlayFabId);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_GooglePlayGamesPlayerId; ToJsonUtilS(GooglePlayGamesPlayerId, each_GooglePlayGamesPlayerId); output["GooglePlayGamesPlayerId"] = each_GooglePlayGamesPlayerId;
+                Json::Value each_PlayFabId; ToJsonUtilS(PlayFabId, each_PlayFabId); output["PlayFabId"] = each_PlayFabId;
+                return output;
+            }
+        };
+
+        struct GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult : public PlayFabResultCommon
+        {
+            std::list<GooglePlayGamesPlayFabIdPair> Data;
+
+            GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult() :
+                PlayFabResultCommon(),
+                Data()
+            {}
+
+            GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult(const GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult& src) :
+                PlayFabResultCommon(),
+                Data(src.Data)
+            {}
+
+            ~GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilO(input["Data"], Data);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_Data; ToJsonUtilO(Data, each_Data); output["Data"] = each_Data;
+                return output;
+            }
+        };
+
         struct GetPlayFabIDsFromKongregateIDsRequest : public PlayFabRequestCommon
         {
             std::list<std::string> KongregateIDs;
@@ -13139,6 +13302,98 @@ namespace PlayFab
             {}
 
             ~GetPlayFabIDsFromKongregateIDsResult() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilO(input["Data"], Data);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_Data; ToJsonUtilO(Data, each_Data); output["Data"] = each_Data;
+                return output;
+            }
+        };
+
+        struct GetPlayFabIDsFromNintendoServiceAccountIdsRequest : public PlayFabRequestCommon
+        {
+            std::list<std::string> NintendoAccountIds;
+
+            GetPlayFabIDsFromNintendoServiceAccountIdsRequest() :
+                PlayFabRequestCommon(),
+                NintendoAccountIds()
+            {}
+
+            GetPlayFabIDsFromNintendoServiceAccountIdsRequest(const GetPlayFabIDsFromNintendoServiceAccountIdsRequest& src) :
+                PlayFabRequestCommon(),
+                NintendoAccountIds(src.NintendoAccountIds)
+            {}
+
+            ~GetPlayFabIDsFromNintendoServiceAccountIdsRequest() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["NintendoAccountIds"], NintendoAccountIds);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_NintendoAccountIds; ToJsonUtilS(NintendoAccountIds, each_NintendoAccountIds); output["NintendoAccountIds"] = each_NintendoAccountIds;
+                return output;
+            }
+        };
+
+        struct NintendoServiceAccountPlayFabIdPair : public PlayFabBaseModel
+        {
+            std::string NintendoServiceAccountId;
+            std::string PlayFabId;
+
+            NintendoServiceAccountPlayFabIdPair() :
+                PlayFabBaseModel(),
+                NintendoServiceAccountId(),
+                PlayFabId()
+            {}
+
+            NintendoServiceAccountPlayFabIdPair(const NintendoServiceAccountPlayFabIdPair& src) :
+                PlayFabBaseModel(),
+                NintendoServiceAccountId(src.NintendoServiceAccountId),
+                PlayFabId(src.PlayFabId)
+            {}
+
+            ~NintendoServiceAccountPlayFabIdPair() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["NintendoServiceAccountId"], NintendoServiceAccountId);
+                FromJsonUtilS(input["PlayFabId"], PlayFabId);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_NintendoServiceAccountId; ToJsonUtilS(NintendoServiceAccountId, each_NintendoServiceAccountId); output["NintendoServiceAccountId"] = each_NintendoServiceAccountId;
+                Json::Value each_PlayFabId; ToJsonUtilS(PlayFabId, each_PlayFabId); output["PlayFabId"] = each_PlayFabId;
+                return output;
+            }
+        };
+
+        struct GetPlayFabIDsFromNintendoServiceAccountIdsResult : public PlayFabResultCommon
+        {
+            std::list<NintendoServiceAccountPlayFabIdPair> Data;
+
+            GetPlayFabIDsFromNintendoServiceAccountIdsResult() :
+                PlayFabResultCommon(),
+                Data()
+            {}
+
+            GetPlayFabIDsFromNintendoServiceAccountIdsResult(const GetPlayFabIDsFromNintendoServiceAccountIdsResult& src) :
+                PlayFabResultCommon(),
+                Data(src.Data)
+            {}
+
+            ~GetPlayFabIDsFromNintendoServiceAccountIdsResult() = default;
 
             void FromJson(const Json::Value& input) override
             {
@@ -15106,6 +15361,69 @@ namespace PlayFab
             }
         };
 
+        struct LinkGooglePlayGamesServicesAccountRequest : public PlayFabRequestCommon
+        {
+            std::map<std::string, std::string> CustomTags;
+            Boxed<bool> ForceLink;
+            std::string ServerAuthCode;
+
+            LinkGooglePlayGamesServicesAccountRequest() :
+                PlayFabRequestCommon(),
+                CustomTags(),
+                ForceLink(),
+                ServerAuthCode()
+            {}
+
+            LinkGooglePlayGamesServicesAccountRequest(const LinkGooglePlayGamesServicesAccountRequest& src) :
+                PlayFabRequestCommon(),
+                CustomTags(src.CustomTags),
+                ForceLink(src.ForceLink),
+                ServerAuthCode(src.ServerAuthCode)
+            {}
+
+            ~LinkGooglePlayGamesServicesAccountRequest() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["CustomTags"], CustomTags);
+                FromJsonUtilP(input["ForceLink"], ForceLink);
+                FromJsonUtilS(input["ServerAuthCode"], ServerAuthCode);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_CustomTags; ToJsonUtilS(CustomTags, each_CustomTags); output["CustomTags"] = each_CustomTags;
+                Json::Value each_ForceLink; ToJsonUtilP(ForceLink, each_ForceLink); output["ForceLink"] = each_ForceLink;
+                Json::Value each_ServerAuthCode; ToJsonUtilS(ServerAuthCode, each_ServerAuthCode); output["ServerAuthCode"] = each_ServerAuthCode;
+                return output;
+            }
+        };
+
+        struct LinkGooglePlayGamesServicesAccountResult : public PlayFabResultCommon
+        {
+
+            LinkGooglePlayGamesServicesAccountResult() :
+                PlayFabResultCommon()
+            {}
+
+            LinkGooglePlayGamesServicesAccountResult(const LinkGooglePlayGamesServicesAccountResult&) :
+                PlayFabResultCommon()
+            {}
+
+            ~LinkGooglePlayGamesServicesAccountResult() = default;
+
+            void FromJson(const Json::Value&) override
+            {
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                return output;
+            }
+        };
+
         struct LinkIOSDeviceIDRequest : public PlayFabRequestCommon
         {
             std::map<std::string, std::string> CustomTags;
@@ -16350,6 +16668,65 @@ namespace PlayFab
             {}
 
             ~LoginWithGoogleAccountRequest() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilP(input["CreateAccount"], CreateAccount);
+                FromJsonUtilS(input["CustomTags"], CustomTags);
+                FromJsonUtilS(input["EncryptedRequest"], EncryptedRequest);
+                FromJsonUtilO(input["InfoRequestParameters"], InfoRequestParameters);
+                FromJsonUtilS(input["PlayerSecret"], PlayerSecret);
+                FromJsonUtilS(input["ServerAuthCode"], ServerAuthCode);
+                FromJsonUtilS(input["TitleId"], TitleId);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_CreateAccount; ToJsonUtilP(CreateAccount, each_CreateAccount); output["CreateAccount"] = each_CreateAccount;
+                Json::Value each_CustomTags; ToJsonUtilS(CustomTags, each_CustomTags); output["CustomTags"] = each_CustomTags;
+                Json::Value each_EncryptedRequest; ToJsonUtilS(EncryptedRequest, each_EncryptedRequest); output["EncryptedRequest"] = each_EncryptedRequest;
+                Json::Value each_InfoRequestParameters; ToJsonUtilO(InfoRequestParameters, each_InfoRequestParameters); output["InfoRequestParameters"] = each_InfoRequestParameters;
+                Json::Value each_PlayerSecret; ToJsonUtilS(PlayerSecret, each_PlayerSecret); output["PlayerSecret"] = each_PlayerSecret;
+                Json::Value each_ServerAuthCode; ToJsonUtilS(ServerAuthCode, each_ServerAuthCode); output["ServerAuthCode"] = each_ServerAuthCode;
+                Json::Value each_TitleId; ToJsonUtilS(TitleId, each_TitleId); output["TitleId"] = each_TitleId;
+                return output;
+            }
+        };
+
+        struct LoginWithGooglePlayGamesServicesRequest : public PlayFabRequestCommon
+        {
+            Boxed<bool> CreateAccount;
+            std::map<std::string, std::string> CustomTags;
+            std::string EncryptedRequest;
+            Boxed<GetPlayerCombinedInfoRequestParams> InfoRequestParameters;
+            std::string PlayerSecret;
+            std::string ServerAuthCode;
+            std::string TitleId;
+
+            LoginWithGooglePlayGamesServicesRequest() :
+                PlayFabRequestCommon(),
+                CreateAccount(),
+                CustomTags(),
+                EncryptedRequest(),
+                InfoRequestParameters(),
+                PlayerSecret(),
+                ServerAuthCode(),
+                TitleId()
+            {}
+
+            LoginWithGooglePlayGamesServicesRequest(const LoginWithGooglePlayGamesServicesRequest& src) :
+                PlayFabRequestCommon(),
+                CreateAccount(src.CreateAccount),
+                CustomTags(src.CustomTags),
+                EncryptedRequest(src.EncryptedRequest),
+                InfoRequestParameters(src.InfoRequestParameters),
+                PlayerSecret(src.PlayerSecret),
+                ServerAuthCode(src.ServerAuthCode),
+                TitleId(src.TitleId)
+            {}
+
+            ~LoginWithGooglePlayGamesServicesRequest() = default;
 
             void FromJson(const Json::Value& input) override
             {
@@ -19052,6 +19429,59 @@ namespace PlayFab
             {}
 
             ~UnlinkGoogleAccountResult() = default;
+
+            void FromJson(const Json::Value&) override
+            {
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                return output;
+            }
+        };
+
+        struct UnlinkGooglePlayGamesServicesAccountRequest : public PlayFabRequestCommon
+        {
+            std::map<std::string, std::string> CustomTags;
+
+            UnlinkGooglePlayGamesServicesAccountRequest() :
+                PlayFabRequestCommon(),
+                CustomTags()
+            {}
+
+            UnlinkGooglePlayGamesServicesAccountRequest(const UnlinkGooglePlayGamesServicesAccountRequest& src) :
+                PlayFabRequestCommon(),
+                CustomTags(src.CustomTags)
+            {}
+
+            ~UnlinkGooglePlayGamesServicesAccountRequest() = default;
+
+            void FromJson(const Json::Value& input) override
+            {
+                FromJsonUtilS(input["CustomTags"], CustomTags);
+            }
+
+            Json::Value ToJson() const override
+            {
+                Json::Value output;
+                Json::Value each_CustomTags; ToJsonUtilS(CustomTags, each_CustomTags); output["CustomTags"] = each_CustomTags;
+                return output;
+            }
+        };
+
+        struct UnlinkGooglePlayGamesServicesAccountResult : public PlayFabResultCommon
+        {
+
+            UnlinkGooglePlayGamesServicesAccountResult() :
+                PlayFabResultCommon()
+            {}
+
+            UnlinkGooglePlayGamesServicesAccountResult(const UnlinkGooglePlayGamesServicesAccountResult&) :
+                PlayFabResultCommon()
+            {}
+
+            ~UnlinkGooglePlayGamesServicesAccountResult() = default;
 
             void FromJson(const Json::Value&) override
             {
