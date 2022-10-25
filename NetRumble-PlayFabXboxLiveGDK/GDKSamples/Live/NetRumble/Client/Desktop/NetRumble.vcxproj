@@ -86,7 +86,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerGDKPreview\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Include;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerGDK\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Include;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <FXCompile>
@@ -108,7 +108,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_GAMING_DESKTOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(ProjectDir)..\..\Common\Online\Xbox\UnsecuredNetworking;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerGDKPreview\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Include;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(ProjectDir)..\..\Common\Online\Xbox\UnsecuredNetworking;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerGDK\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Include;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <FXCompile>
@@ -257,10 +257,10 @@
   </ItemGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Gaming.Desktop.x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerGDKPreview\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Debug;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Lib;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Gaming.Desktop.x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerGDK\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Debug;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Lib;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Link>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Gaming.Desktop.x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerGDKPreview\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Release;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Lib;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Gaming.Desktop.x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerGDK\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Release;$(Console_GRDKExtLibRoot)\PlayFab.Party.Cpp\DesignTime\CommonConfiguration\neutral\Lib;$(Console_GRDKExtLibRoot)\PlayFab.PartyXboxLive.Cpp\DesignTime\CommonConfiguration\neutral\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Gaming.Desktop.x64'">$(ProjectDir)CopyAssets.bat $(OutputPath) $(SolutionDir)</Command>

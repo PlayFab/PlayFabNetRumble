@@ -85,7 +85,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(ProjectDir)..\..\Dependencies\SteamSDK\public;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerWin10Preview\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(ProjectDir)..\..\Dependencies\SteamSDK\public;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerWin10\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <FXCompile>
@@ -107,7 +107,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_GAMING_DESKTOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(ProjectDir)..\..\Dependencies\SteamSDK\public;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerWin10Preview\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\..\Common\Online;$(ProjectDir)..\..\Common\Renderer\DX12;$(ProjectDir)..\..\Common;$(ProjectDir)..\..\Dependencies\SteamSDK\public;$(SolutionDir)..\..\..\Kits\PeerMeshForSamples\PeerMeshForSamples;$(SolutionDir)..\..\..\Kits\DirectXTK12\Inc;$(SolutionDir)..\..\..\Kits\Tools;$(SolutionDir)..\..\..\Kits\PlayFabMultiplayerWin10\include;$(SolutionDir)Dependencies\XPlatCppSdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <FXCompile>
@@ -265,10 +265,10 @@
   </ItemGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerWin10Preview\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerWin10\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Link>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerWin10Preview\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)..\..\Dependencies\DirectXTK12\x64;$(ProjectDir)..\..\Dependencies\SteamSDK\redistributable_bin\win64;$(ProjectDir)..\..\Dependencies\SteamSDK\public\steam\lib\win64;$(ProjectDir)..\..\Dependencies\PlayFabMultiplayerWin10\bin;$(ProjectDir)..\..\Dependencies\XPlatCppSdk\lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)CopyAssets.bat $(OutputPath) $(SolutionDir)</Command>

@@ -10,7 +10,7 @@ namespace PlayFab
     /// </summary>
     class PlayFabApiSettings
     {
-#if defined(ENABLE_PLAYFABSERVER_API) || defined(ENABLE_PLAYFABADMIN_API)
+#if defined(ENABLE_PLAYFABSERVER_API) || defined(ENABLE_PLAYFABADMIN_API) || defined(ENABLE_PLAYFAB_SECRETKEY)
     public: // Server-only variables should only be visible when appropriate
 #else
     private: // But, static library memory size and alloc issues mean it always needs to exist
@@ -22,7 +22,7 @@ namespace PlayFab
 
         std::string baseServiceHost; // The base for a PlayFab service host
         std::string titleId; // You must set this value for PlayFabSdk to work properly (found in the Game Manager for your title, at the PlayFab Website)
-        std::string connectionString; // set to override minimal string building from the client. Produced directly from the game manager.
+
 
         PlayFabApiSettings();
         PlayFabApiSettings(const PlayFabApiSettings& other) = delete;
