@@ -1,3 +1,9 @@
+# Archived
+
+This repository is archived and will be receiving no additional updates.
+
+The [archive-release](https://github.com/PlayFab/PlayFabNetRumble/tree/archive-release) branch can be used for legacy inspection purposes.
+
 # NetRumble Demo Game
 
 _(Please use Git client with Large File Storage (LFS) support to work with this repo)_
